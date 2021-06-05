@@ -99,5 +99,50 @@ def get_8():
     time.sleep(0.25)
     sw1.low()
     
-#zde bude lůp    
-    
+#zde bude lůp
+lcd.putstr("Vadim blyat")
+time.sleep(2)
+lcd.clear()
+
+lcd.putstr("Měřím drát 1")
+get_1()
+time.sleep(0.75)
+lcd.clear()
+
+lcd.putstr("Měřím drát 2")
+get_2()
+time.sleep(0.75)
+lcd.clear()
+
+lcd.putstr("Měřím drát 3")
+get_3()
+time.sleep(0.75)
+lcd.clear()
+
+lcd.putstr("Měřím drát 4")
+get_4()
+time.sleep(0.75)
+lcd.clear()
+
+lcd.putstr("Měřím drát 5")
+get_5()
+time.sleep(0.75)
+lcd.clear()
+
+lcd.putstr("Měřím drát 6")
+get_6()
+time.sleep(0.75)
+lcd.clear()
+
+lcd.putstr("Měřím drát 7")
+get_7()
+time.sleep(0.75)
+lcd.clear()
+
+lcd.putstr("Měřím drát 8")
+get_8()
+time.sleep(0.75)
+lcd.clear()
+
+lcd.putstr("Změřeno")
+
