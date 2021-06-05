@@ -6,10 +6,11 @@ from machine import *
 from lcd_api import *
 from pico_i2c_lcd import *
 
-
+led = Pin(25, Pin.OUT)
+led.low()
 
 I2C_ADDR     = 0x27
-I2C_NUM_ROWS = 4
+I2C_NUM_ROWS = 2
 I2C_NUM_COLS = 20
 i2c = I2C(0, sda=machine.Pin(0), scl=machine.Pin(1), freq=400000)
 lcd = I2cLcd(i2c, I2C_ADDR, I2C_NUM_ROWS, I2C_NUM_COLS)    
@@ -162,6 +163,15 @@ time.sleep(0.75)
 lcd.clear()
 
 lcd.putstr("Změřeno")
+led.toggle()
+utime.sleep(1)
+led.toggle()
+utime.sleep(0.2) 
+led.toggle()
+utime.sleep(1)
+led.toggle()
+utime.sleep(0.2) 
+
 
 if var_1 > var_2 > var_3 > var_4 > var_5 > var_6 > var_7 > var_8:
     print("Vše ok")
