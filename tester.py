@@ -29,6 +29,15 @@ sw7 = Pin(8, Pin.OUT)
 sw8 = Pin(9, Pin.OUT)
 sw9 = Pin(10, Pin.OUT)
 
+var_1 = 0
+var_2 = 0
+var_3 = 0
+var_4 = 0
+var_5 = 0
+var_6 = 0
+var_7 = 0
+var_8 = 0
+
 
 def clear():
     sw1.low()
@@ -56,6 +65,7 @@ def get_2():
     var2 = an_sw1.read_u16()
     time.sleep(0.25)
     sw1.low()
+    print(var2)
     
 def get_3():
     sw1.high()
@@ -63,6 +73,7 @@ def get_3():
     var3 = an_sw1.read_u16()
     time.sleep(0.25)
     sw1.low()
+    print(var3)
 
 def get_4():
     sw1.high()
@@ -70,6 +81,7 @@ def get_4():
     var4 = an_sw1.read_u16()
     time.sleep(0.25)
     sw1.low()
+    print(var4)
     
 def get_5():
     sw1.high()
@@ -77,6 +89,7 @@ def get_5():
     var5 = an_sw1.read_u16()
     time.sleep(0.25)
     sw1.low()
+    print(var5)
     
 def get_6():
     sw1.high()
@@ -84,6 +97,7 @@ def get_6():
     var6 = an_sw1.read_u16()
     time.sleep(0.25)
     sw1.low()
+    print(var6)
     
 def get_7():
     sw1.high()
@@ -91,6 +105,7 @@ def get_7():
     var7 = an_sw1.read_u16()
     time.sleep(0.25)
     sw1.low()
+    print(var7)
     
 def get_8():
     sw1.high()
@@ -98,6 +113,8 @@ def get_8():
     var8 = an_sw1.read_u16()
     time.sleep(0.25)
     sw1.low()
+    print(var8)
+    
     
 #zde bude lůp
 lcd.putstr("Vadim blyat")
@@ -146,3 +163,15 @@ lcd.clear()
 
 lcd.putstr("Změřeno")
 
+if var_1 > var_2 > var_3 > var_4 > var_5 > var_6 > var_7 > var_8:
+    print("Vše ok")
+    lcd.clear()
+    lcd.putstr("Kabel OK")
+    time.sleep(10)
+    lcd.clear()
+else:
+    lcd.clear()
+    print("undfnd")
+    lcd.putstr("OOF")
+    time.sleep(10)
+    lcd.clear()
