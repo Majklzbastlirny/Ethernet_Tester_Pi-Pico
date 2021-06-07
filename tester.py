@@ -9,11 +9,11 @@ from pico_i2c_lcd import *
 led = Pin(25, Pin.OUT)
 led.low()
 
-I2C_ADDR     = 0x27
-I2C_NUM_ROWS = 2
+I2C_ADDR= 0x3F
+I2C_NUM_ROWS = 4
 I2C_NUM_COLS = 20
 i2c = I2C(0, sda=machine.Pin(0), scl=machine.Pin(1), freq=400000)
-lcd = I2cLcd(i2c, I2C_ADDR, I2C_NUM_ROWS, I2C_NUM_COLS)    
+lcd = I2cLcd(i2c, I2C_ADDR, I2C_NUM_ROWS, I2C_NUM_COLS)
 
 
 an_sw1 = machine.ADC(26)
@@ -122,47 +122,47 @@ lcd.putstr("Vadim blyat")
 time.sleep(2)
 lcd.clear()
 
-lcd.putstr("Měřím drát 1")
+lcd.putstr("Merim drat 1")
 get_1()
 time.sleep(0.75)
 lcd.clear()
 
-lcd.putstr("Měřím drát 2")
+lcd.putstr("Merim drat 2")
 get_2()
 time.sleep(0.75)
 lcd.clear()
 
-lcd.putstr("Měřím drát 3")
+lcd.putstr("Merim drat 3")
 get_3()
 time.sleep(0.75)
 lcd.clear()
 
-lcd.putstr("Měřím drát 4")
+lcd.putstr("Merim drat 4")
 get_4()
 time.sleep(0.75)
 lcd.clear()
 
-lcd.putstr("Měřím drát 5")
+lcd.putstr("Merim drat 5")
 get_5()
 time.sleep(0.75)
 lcd.clear()
 
-lcd.putstr("Měřím drát 6")
+lcd.putstr("Merim drat 6")
 get_6()
 time.sleep(0.75)
 lcd.clear()
 
-lcd.putstr("Měřím drát 7")
+lcd.putstr("Merim drat 7")
 get_7()
 time.sleep(0.75)
 lcd.clear()
 
-lcd.putstr("Měřím drát 8")
+lcd.putstr("Merim drat 8")
 get_8()
 time.sleep(0.75)
 lcd.clear()
 
-lcd.putstr("Změřeno")
+lcd.putstr("Zmereno")
 led.toggle()
 utime.sleep(1)
 led.toggle()
@@ -172,16 +172,33 @@ utime.sleep(1)
 led.toggle()
 utime.sleep(0.2) 
 
-
+#generic
 if var_1 > var_2 > var_3 > var_4 > var_5 > var_6 > var_7 > var_8:
     print("Vše ok")
     lcd.clear()
     lcd.putstr("Kabel OK")
     time.sleep(10)
     lcd.clear()
+#full crossover    
+elif var_3 > var_6 > var_1 > var_7 > var_8 > var_2 > var_4 > var_5:
+    print("full crossover")
+    lcd.clear()
+    lcd.putstr("Je to               crossover kabel.")
+    time.sleep(10)
+    lcd.clear()
+          
+#half crossover    
+elif var_3 > var_6 > var_1 > var_4 > var_5 > var_2 > var_7 > var_8:
+    print("half crossover")
+    lcd.clear()
+    lcd.putstr("Je to               crossover kabel.")
+    time.sleep(10)
+    lcd.clear()
+    
+#oof
 else:
     lcd.clear()
     print("undfnd")
-    lcd.putstr("OOF")
+    lcd.putstr("Kabel je vadny      :-(")
     time.sleep(10)
     lcd.clear()
