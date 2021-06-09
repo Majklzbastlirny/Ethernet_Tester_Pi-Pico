@@ -20,7 +20,7 @@ I2C_NUM_ROWS = 4
 I2C_NUM_COLS = 20
 i2c = I2C(0, sda=machine.Pin(0), scl=machine.Pin(1), freq=4000000)
 lcd = I2cLcd(i2c, I2C_ADDR, I2C_NUM_ROWS, I2C_NUM_COLS)
-
+lcd.backlight_off()
 lcd.clear()
 
 #Tahle část říká, třeba že pin 2 na PI Picu je v mém kódu označován jako sw1 a tak dále pro další digitální i analogové piny
@@ -145,6 +145,7 @@ def get_8():
     
 #zde už je hlavní část kódu.
 #zde jde hlavně o měření, uložení a zobrazení hodnot
+lcd.backlight_on()
 lcd.putstr("Ethernet tester     ")
 time.sleep(2)
 clearall()
@@ -217,6 +218,7 @@ if var_1 > var_2 > var_3 > var_4 > var_5 > var_6 > var_7 > var_8:
     lcd.putstr("Kabel OK -:)")
     time.sleep(10)
     lcd.clear()
+    lcd.backlight_off()
 #full crossover    
 elif var_3 > var_6 > var_1 > var_7 > var_8 > var_2 > var_4 > var_5:
     print("full crossover")
@@ -224,6 +226,7 @@ elif var_3 > var_6 > var_1 > var_7 > var_8 > var_2 > var_4 > var_5:
     lcd.putstr("Je to               crossover kabel.")
     time.sleep(10)
     lcd.clear()
+    lcd.backlight_off()
           
 #half crossover    
 elif var_3 > var_6 > var_1 > var_4 > var_5 > var_2 > var_7 > var_8:
@@ -232,6 +235,7 @@ elif var_3 > var_6 > var_1 > var_4 > var_5 > var_2 > var_7 > var_8:
     lcd.putstr("Je to               crossover kabel.")
     time.sleep(10)
     lcd.clear()
+    lcd.backlight_off()
     
 #oof
 else:
@@ -240,3 +244,4 @@ else:
     lcd.putstr("Kabel je vadny      :-(")
     time.sleep(10)
     lcd.clear()
+    lcd.backlight_off()
