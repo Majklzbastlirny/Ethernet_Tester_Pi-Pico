@@ -1,6 +1,8 @@
 # Ethernet_Tester_Pi-Pico
 Ethernet tester with raspberry pi pico.
 
+IMPORTANT UPDATE!! DUE TO PURE LAZINESS OF MY COLLEAGUE THE ANALOG VERSION PROBABLY WILL NOT RECEIVE UPDATE. I now have to work on digital version. HATE HIM. YOU know who you are. Lazy bastart.
+
 Code is INCREDIBLY inefficient, because I'm python beginner.
 
 Using Pi Pico, Custom ethernet shield and LCD 16x2 display with I2C pins.
