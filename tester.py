@@ -1,3 +1,7 @@
+#SW - Michal Basler
+#HW - Patrik V. Bischof
+
+#Importuje generic i custom knihovny
 import machine
 import utime
 import time
@@ -6,9 +10,11 @@ from machine import *
 from lcd_api import *
 from pico_i2c_lcd import *
 
+#V téhle části se nastaví základní parametry
 led = Pin(25, Pin.OUT)
 led.low()
 
+#I2C nastavení
 I2C_ADDR= 0x3F
 I2C_NUM_ROWS = 4
 I2C_NUM_COLS = 20
@@ -17,7 +23,7 @@ lcd = I2cLcd(i2c, I2C_ADDR, I2C_NUM_ROWS, I2C_NUM_COLS)
 
 lcd.clear()
 
-
+#Tahle část říká, třeba že pin 2 na PI Picu je v mém kódu označován jako sw1 a tak dále pro další digitální i analogové piny
 an_sw1 = machine.ADC(26)
 #an_sw2 = machine.ADC(27)
 #an_sw3 = machine.ADC(28)
@@ -41,7 +47,8 @@ var_6 = 0
 var_7 = 0
 var_8 = 0
 
-
+#Zde se naprogramují často používané kousky kódu pro snadnější používání.
+#Stáhne všechy používané digitální piny dolů.
 def clearall():
     sw1.low()
     sw2.low()
@@ -53,7 +60,8 @@ def clearall():
     sw8.low()
     sw9.low()
     time.sleep(0.25)
-    
+
+#Všechny get_ kousky: Zvolí se binárně adresa, uloží se stav analogového pinu jako variable. Zobrazí hodnotu do terminálu i na display (hlavně pro debug).
 def get_1():
     sw1.low()
     sw2.low()
@@ -62,7 +70,7 @@ def get_1():
     var1 = an_sw1.read_u16()
     time.sleep(0.25)
     print(var1)
-#    lcd.putstr(str(var1))
+    lcd.putstr(str(var1))
 
 def get_2():
     sw1.high()
@@ -72,6 +80,7 @@ def get_2():
     var2 = an_sw1.read_u16()
     time.sleep(0.25)
     print(var2)
+    lcd.putstr(str(var2))
     
 def get_3():
     sw1.low()
@@ -81,6 +90,7 @@ def get_3():
     var3 = an_sw1.read_u16()
     time.sleep(0.25)
     print(var3)
+    lcd.putstr(str(var3))
 
 def get_4():
     sw1.high()
@@ -90,6 +100,7 @@ def get_4():
     var4 = an_sw1.read_u16()
     time.sleep(0.25)
     print(var4)
+    lcd.putstr(str(var4))
     
 def get_5():
     sw1.low()
@@ -99,6 +110,7 @@ def get_5():
     var5 = an_sw1.read_u16()
     time.sleep(0.25)
     print(var5)
+    lcd.putstr(str(var5))
     
 def get_6():
     sw1.high()
@@ -108,6 +120,7 @@ def get_6():
     var6 = an_sw1.read_u16()
     time.sleep(0.25)
     print(var6)
+    lcd.putstr(str(var6))
     
 def get_7():
     sw1.low()
@@ -117,6 +130,7 @@ def get_7():
     var7 = an_sw1.read_u16()
     time.sleep(0.25)
     print(var7)
+    lcd.putstr(str(var7))
     
 def get_8():
     sw1.high()
@@ -126,57 +140,59 @@ def get_8():
     var8 = an_sw1.read_u16()
     time.sleep(0.25)
     print(var8)
+    lcd.putstr(str(var8))
     
     
-#zde bude lůp
-lcd.putstr("Ethernet tester     @Majklzbastlirny")
+#zde už je hlavní část kódu.
+#zde jde hlavně o měření, uložení a zobrazení hodnot
+lcd.putstr("Ethernet tester     ")
 time.sleep(2)
 clearall()
 lcd.clear()
 
-lcd.putstr("Merim drat 1")
+lcd.putstr("Merim drat 1        ")
 get_1()
 time.sleep(0.75)
 clearall()
 lcd.clear()
 
-lcd.putstr("Merim drat 2")
+lcd.putstr("Merim drat 2        ")
 get_2()
 time.sleep(0.75)
 clearall()
 lcd.clear()
 
-lcd.putstr("Merim drat 3")
+lcd.putstr("Merim drat 3        ")
 get_3()
 time.sleep(0.75)
 clearall()
 lcd.clear()
 
-lcd.putstr("Merim drat 4")
+lcd.putstr("Merim drat 4        ")
 get_4()
 time.sleep(0.75)
 clearall()
 lcd.clear()
 
-lcd.putstr("Merim drat 5")
+lcd.putstr("Merim drat 5        ")
 get_5()
 time.sleep(0.75)
 clearall()
 lcd.clear()
 
-lcd.putstr("Merim drat 6")
+lcd.putstr("Merim drat 6        ")
 get_6()
 time.sleep(0.75)
 clearall()
 lcd.clear()
 
-lcd.putstr("Merim drat 7")
+lcd.putstr("Merim drat 7        ")
 get_7()
 time.sleep(0.75)
 clearall()
 lcd.clear()
 
-lcd.putstr("Merim drat 8")
+lcd.putstr("Merim drat 8        ")
 get_8()
 time.sleep(0.75)
 clearall()
@@ -192,11 +208,13 @@ utime.sleep(1)
 led.toggle()
 utime.sleep(0.2) 
 
+#Zde se už data porovnávají a výsledek se zobrazuje
+
 #generic
 if var_1 > var_2 > var_3 > var_4 > var_5 > var_6 > var_7 > var_8:
     print("Vše ok")
     lcd.clear()
-    lcd.putstr("Kabel OK")
+    lcd.putstr("Kabel OK -:)")
     time.sleep(10)
     lcd.clear()
 #full crossover    
