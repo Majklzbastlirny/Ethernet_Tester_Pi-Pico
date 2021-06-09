@@ -44,22 +44,16 @@ in7 = Pin(17, Pin.IN)
 in8 = Pin(18, Pin.IN)
 
 
-in_1 = 0
-in_2 = 0
-in_3 = 0
-in_4 = 0
-in_5 = 0
-in_6 = 0
-in_7 = 0
-in_8 = 0
+
+
 
 #Zde se naprogramují často používané kousky kódu pro snadnější používání.
-#Stáhne všechy používané digitální Piny dolů.
+#Je to napsáno VELICE neefektivně. 
 
-#in1.value = in_1
-#print(in1.value())
+
 
 def get_1():
+    global in_1
     out1.high()
     if in1.value() == 1:
         in_1 = 1
@@ -83,6 +77,7 @@ def get_1():
     print(in_1)
 
 def get_2():
+    global in_2
     out2.high()
     if in1.value() == 1:
         in_2 = 1
@@ -106,6 +101,7 @@ def get_2():
     print(in_2)
     
 def get_3():
+    global in_3
     out3.high()
     if in1.value() == 1:
         in_3 = 1
@@ -129,6 +125,7 @@ def get_3():
     print(in_3)
 
 def get_4():
+    global in_4
     out4.high()
     if in1.value() == 1:
         in_4 = 1
@@ -152,6 +149,7 @@ def get_4():
     print(in_4)
     
 def get_5():
+    global in_5
     out5.high()
     if in1.value() == 1:
         in_5 = 1
@@ -175,6 +173,7 @@ def get_5():
     print(in_5)
 
 def get_6():
+    global in_6
     out6.high()
     if in1.value() == 1:
         in_6 = 1
@@ -198,6 +197,7 @@ def get_6():
     print(in_6)
     
 def get_7():
+    global in_7
     out7.high()
     if in1.value() == 1:
         in_7 = 1
@@ -221,6 +221,7 @@ def get_7():
     print(in_7)
 
 def get_8():
+    global in_8
     out8.high()
     if in1.value() == 1:
         in_8 = 1
@@ -252,49 +253,49 @@ time.sleep(2)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 1        ")
+lcd.putstr("Merim drat 1")
 get_1()
 time.sleep(0.75)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 2        ")
+lcd.putstr("Merim drat 2")
 get_2()
 time.sleep(0.75)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 3        ")
+lcd.putstr("Merim drat 3")
 get_3()
 time.sleep(0.75)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 4        ")
+lcd.putstr("Merim drat 4")
 get_4()
 time.sleep(0.75)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 5        ")
+lcd.putstr("Merim drat 5")
 get_5()
 time.sleep(0.75)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 6        ")
+lcd.putstr("Merim drat 6")
 get_6()
 time.sleep(0.75)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 7        ")
+lcd.putstr("Merim drat 7")
 get_7()
 time.sleep(0.75)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 8        ")
+lcd.putstr("Merim drat 8")
 get_8()
 time.sleep(0.75)
 
@@ -308,5 +309,55 @@ utime.sleep(0.2)
 led.toggle()
 utime.sleep(1)
 led.toggle()
-utime.sleep(0.2) 
+utime.sleep(0.2)
+lcd.clear()
 
+
+#Zde už se bude porovnávat
+
+#normal
+if in_1 < in_2 < in_3 < in_4 < in_5 < in_5 < in_6 < in_7 < in_8:
+    print("Vše ok")
+    lcd.clear()
+    lcd.putstr("Kabel OK -:)")
+    time.sleep(10)
+    lcd.clear()
+    lcd.backlight_off()
+
+
+
+#full crossover    
+elif in_3 < in_6 < in_1 < in_7 < in_8 < in_2 < in_4 < in_5:
+    print("full crossover")
+    lcd.clear()
+    lcd.putstr("Je to               crossover kabel.")
+    time.sleep(10)
+    lcd.clear()
+    lcd.backlight_off()
+          
+#half crossover    
+elif in_3 < in_6 < in_1 < in_4 < in_5 < in_2 < in_7 < in_8:
+    print("half crossover")
+    lcd.clear()
+    lcd.putstr("Je to               crossover kabel.")
+    time.sleep(10)
+    lcd.clear()
+    lcd.backlight_off()
+    
+#shorted
+elif in_1 == in_2 == in_3 == in_4 == in_5 == in_5 == in_6 == in_7 == in_8:
+    print("Šlus")
+    lcd.clear()
+    lcd.putstr("V kabelu je slus    nebo nezapojeno")
+    time.sleep(10)
+    lcd.clear()
+    lcd.backlight_off()    
+    
+#oof
+else:
+    lcd.clear()
+    print("undfnd")
+    lcd.putstr("Kabel je vadny      :-(")
+    time.sleep(10)
+    lcd.clear()
+    lcd.backlight_off()
