@@ -1,7 +1,7 @@
 # Ethernet_Tester_Pi-Pico
 Ethernet tester with raspberry pi pico.
 
-IMPORTANT UPDATE!! DUE TO PURE LAZINESS OF MY COLLEAGUE THERE WILL BE 2 VERSIONS. I now have to work on digital version, so the analog one will be less updated. HATE HIM. YOU know who you are. Lazy bastart.
+IMPORTANT UPDATE!! DUE TO PURE LAZINESS OF MY COLLEAGUE THERE WILL BE 2 VERSIONS. I now have to work on digital version, so the analog one will be less updated. HATE HIM. YOU know who you are. Lazy bastard.
  
 Code is INCREDIBLY inefficient, because I'm python beginner.
 
