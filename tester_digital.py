@@ -1,5 +1,5 @@
 #SW - Michal Basler
-#HW - Patrik V. Bischof
+#https://github.com/Majklzbastlirny/Ethernet_Tester_Pi-Pico
 
 #Importuje generic i custom knihovny
 import machine
@@ -18,185 +18,286 @@ led.low()
 I2C_ADDR= 0x3F
 I2C_NUM_ROWS = 4
 I2C_NUM_COLS = 20
-i2c = I2C(0, sda=machine.Pin(0), scl=machine.Pin(1), freq=4000000)
+i2c = I2C(0, sda=Pin(0), scl=Pin(1), freq=4000000)
 lcd = I2cLcd(i2c, I2C_ADDR, I2C_NUM_ROWS, I2C_NUM_COLS)
 lcd.backlight_off()
 lcd.clear()
 
-#Tahle část říká, třeba že pin 2 na PI Picu je v mém kódu označován jako sw1 a tak dále pro další digitální i analogové piny
-an_sw1 = machine.ADC(26)
-#an_sw2 = machine.ADC(27)
-#an_sw3 = machine.ADC(28)
+#Tahle část říká, třeba že Pin 2 na PI Picu je v mém kódu označován jako out1 a tak dále pro další digitální Piny
 
-sw1 = Pin(2, Pin.OUT)
-sw2 = Pin(3, Pin.OUT)
-sw3 = Pin(4, Pin.OUT)
-sw4 = Pin(5, Pin.OUT)
-sw5 = Pin(6, Pin.OUT)
-sw6 = Pin(7, Pin.OUT)
-sw7 = Pin(8, Pin.OUT)
-sw8 = Pin(9, Pin.OUT)
-sw9 = Pin(10, Pin.OUT)
 
-var_1 = 0
-var_2 = 0
-var_3 = 0
-var_4 = 0
-var_5 = 0
-var_6 = 0
-var_7 = 0
-var_8 = 0
+out1 = Pin(2, Pin.OUT)
+out2 = Pin(3, Pin.OUT)
+out3 = Pin(4, Pin.OUT)
+out4 = Pin(5, Pin.OUT)
+out5 = Pin(6, Pin.OUT)
+out6 = Pin(7, Pin.OUT)
+out7 = Pin(8, Pin.OUT)
+out8 = Pin(9, Pin.OUT)
+in1 = Pin(11, Pin.IN)
+in2 = Pin(12, Pin.IN)
+in3 = Pin(13, Pin.IN)
+in4 = Pin(14, Pin.IN)
+in5 = Pin(15, Pin.IN)
+in6 = Pin(16, Pin.IN)
+in7 = Pin(17, Pin.IN)
+in8 = Pin(18, Pin.IN)
+
+
+in_1 = 0
+in_2 = 0
+in_3 = 0
+in_4 = 0
+in_5 = 0
+in_6 = 0
+in_7 = 0
+in_8 = 0
 
 #Zde se naprogramují často používané kousky kódu pro snadnější používání.
-#Stáhne všechy používané digitální piny dolů.
-def clearall():
-    sw1.low()
-    sw2.low()
-    sw3.low()
-    sw4.low()
-    sw5.low()
-    sw6.low()
-    sw7.low()
-    sw8.low()
-    sw9.low()
-    time.sleep(0.25)
+#Stáhne všechy používané digitální Piny dolů.
 
-#Všechny get_ kousky: Zvolí se binárně adresa, uloží se stav analogového pinu jako variable. Zobrazí hodnotu do terminálu i na display (hlavně pro debug).
+#in1.value = in_1
+#print(in1.value())
+
 def get_1():
-    sw1.low()
-    sw2.low()
-    sw3.low()
-    time.sleep(0.25)
-    var1 = an_sw1.read_u16()
-    time.sleep(0.25)
-    print(var1)
-    lcd.putstr(str(var1))
+    out1.high()
+    if in1.value() == 1:
+        in_1 = 1
+    elif in2.value() == 1:
+        in_1 = 2
+    elif in3.value() == 1:
+        in_1 = 3
+    elif in4.value() == 1:
+        in_1 = 4
+    elif in5.value() == 1:
+        in_1 = 5
+    elif in6.value() == 1:
+        in_1 = 6
+    elif in7.value() == 1:
+        in_1 = 7
+    elif in8.value() == 1:
+        in_1 = 8
+    else:
+        in_1 = 0
+    out1.low()
+    print(in_1)
 
 def get_2():
-    sw1.high()
-    sw2.low()
-    sw3.low()
-    time.sleep(0.25)
-    var2 = an_sw1.read_u16()
-    time.sleep(0.25)
-    print(var2)
-    lcd.putstr(str(var2))
+    out2.high()
+    if in1.value() == 1:
+        in_2 = 1
+    elif in2.value() == 1:
+        in_2 = 2
+    elif in3.value() == 1:
+        in_2 = 3
+    elif in4.value() == 1:
+        in_2 = 4
+    elif in5.value() == 1:
+        in_2 = 5
+    elif in6.value() == 1:
+        in_2 = 6
+    elif in7.value() == 1:
+        in_2 = 7
+    elif in8.value() == 1:
+        in_2 = 8
+    else:
+        in_2 = 0
+    out2.low()
+    print(in_2)
     
 def get_3():
-    sw1.low()
-    sw2.high()
-    sw3.low()
-    time.sleep(0.25)
-    var3 = an_sw1.read_u16()
-    time.sleep(0.25)
-    print(var3)
-    lcd.putstr(str(var3))
+    out3.high()
+    if in1.value() == 1:
+        in_3 = 1
+    elif in2.value() == 1:
+        in_3 = 2
+    elif in3.value() == 1:
+        in_3 = 3
+    elif in4.value() == 1:
+        in_3 = 4
+    elif in5.value() == 1:
+        in_3 = 5
+    elif in6.value() == 1:
+        in_3 = 6
+    elif in7.value() == 1:
+        in_3 = 7
+    elif in8.value() == 1:
+        in_3 = 8
+    else:
+        in_3 = 0
+    out3.low()
+    print(in_3)
 
 def get_4():
-    sw1.high()
-    sw2.high()
-    sw3.low()
-    time.sleep(0.25)
-    var4 = an_sw1.read_u16()
-    time.sleep(0.25)
-    print(var4)
-    lcd.putstr(str(var4))
+    out4.high()
+    if in1.value() == 1:
+        in_4 = 1
+    elif in2.value() == 1:
+        in_4 = 2
+    elif in3.value() == 1:
+        in_4 = 3
+    elif in4.value() == 1:
+        in_4 = 4
+    elif in5.value() == 1:
+        in_4 = 5
+    elif in6.value() == 1:
+        in_4 = 6
+    elif in7.value() == 1:
+        in_4 = 7
+    elif in8.value() == 1:
+        in_4 = 8
+    else:
+        in_4 = 0
+    out4.low()
+    print(in_4)
     
 def get_5():
-    sw1.low()
-    sw2.low()
-    sw3.high()
-    time.sleep(0.25)
-    var5 = an_sw1.read_u16()
-    time.sleep(0.25)
-    print(var5)
-    lcd.putstr(str(var5))
-    
+    out5.high()
+    if in1.value() == 1:
+        in_5 = 1
+    elif in2.value() == 1:
+        in_5 = 2
+    elif in3.value() == 1:
+        in_5 = 3
+    elif in4.value() == 1:
+        in_5 = 4
+    elif in5.value() == 1:
+        in_5 = 5
+    elif in6.value() == 1:
+        in_5 = 6
+    elif in7.value() == 1:
+        in_5 = 7
+    elif in8.value() == 1:
+        in_5 = 8
+    else:
+        in_5 = 0
+    out5.low()
+    print(in_5)
+
 def get_6():
-    sw1.high()
-    sw2.low()
-    sw3.high()
-    time.sleep(0.25)
-    var6 = an_sw1.read_u16()
-    time.sleep(0.25)
-    print(var6)
-    lcd.putstr(str(var6))
+    out6.high()
+    if in1.value() == 1:
+        in_6 = 1
+    elif in2.value() == 1:
+        in_6 = 2
+    elif in3.value() == 1:
+        in_6 = 3
+    elif in4.value() == 1:
+        in_6 = 4
+    elif in5.value() == 1:
+        in_6 = 5
+    elif in6.value() == 1:
+        in_6 = 6
+    elif in7.value() == 1:
+        in_6 = 7
+    elif in8.value() == 1:
+        in_6 = 8
+    else:
+        in_6 = 0
+    out2.low()
+    print(in_6)
     
 def get_7():
-    sw1.low()
-    sw2.high()
-    sw3.high()
-    time.sleep(0.25)
-    var7 = an_sw1.read_u16()
-    time.sleep(0.25)
-    print(var7)
-    lcd.putstr(str(var7))
-    
+    out7.high()
+    if in1.value() == 1:
+        in_7 = 1
+    elif in2.value() == 1:
+        in_7 = 2
+    elif in3.value() == 1:
+        in_7 = 3
+    elif in4.value() == 1:
+        in_7 = 4
+    elif in5.value() == 1:
+        in_7 = 5
+    elif in6.value() == 1:
+        in_7 = 6
+    elif in7.value() == 1:
+        in_7 = 7
+    elif in8.value() == 1:
+        in_7 = 8
+    else:
+        in_7 = 0
+    out7.low()
+    print(in_7)
+
 def get_8():
-    sw1.high()
-    sw2.high()
-    sw3.high()
-    time.sleep(0.25)
-    var8 = an_sw1.read_u16()
-    time.sleep(0.25)
-    print(var8)
-    lcd.putstr(str(var8))
-    
-    
+    out8.high()
+    if in1.value() == 1:
+        in_8 = 1
+    elif in2.value() == 1:
+        in_8 = 2
+    elif in3.value() == 1:
+        in_8 = 3
+    elif in4.value() == 1:
+        in_8 = 4
+    elif in5.value() == 1:
+        in_8 = 5
+    elif in6.value() == 1:
+        in_8 = 6
+    elif in7.value() == 1:
+        in_8 = 7
+    elif in8.value() == 1:
+        in_8 = 8
+    else:
+        in_8 = 0
+    out8.low()
+    print(in_8)
+
+
 #zde už je hlavní část kódu.
 #zde jde hlavně o měření, uložení a zobrazení hodnot
 lcd.backlight_on()
 lcd.putstr("Ethernet tester     ")
 time.sleep(2)
-clearall()
+
 lcd.clear()
 
 lcd.putstr("Merim drat 1        ")
 get_1()
 time.sleep(0.75)
-clearall()
+
 lcd.clear()
 
 lcd.putstr("Merim drat 2        ")
 get_2()
 time.sleep(0.75)
-clearall()
+
 lcd.clear()
 
 lcd.putstr("Merim drat 3        ")
 get_3()
 time.sleep(0.75)
-clearall()
+
 lcd.clear()
 
 lcd.putstr("Merim drat 4        ")
 get_4()
 time.sleep(0.75)
-clearall()
+
 lcd.clear()
 
 lcd.putstr("Merim drat 5        ")
 get_5()
 time.sleep(0.75)
-clearall()
+
 lcd.clear()
 
 lcd.putstr("Merim drat 6        ")
 get_6()
 time.sleep(0.75)
-clearall()
+
 lcd.clear()
 
 lcd.putstr("Merim drat 7        ")
 get_7()
 time.sleep(0.75)
-clearall()
+
 lcd.clear()
 
 lcd.putstr("Merim drat 8        ")
 get_8()
 time.sleep(0.75)
-clearall()
+
 lcd.clear()
 
 lcd.putstr("Zmereno")
@@ -209,39 +310,3 @@ utime.sleep(1)
 led.toggle()
 utime.sleep(0.2) 
 
-#Zde se už data porovnávají a výsledek se zobrazuje
-
-#generic
-if var_1 > var_2 > var_3 > var_4 > var_5 > var_6 > var_7 > var_8:
-    print("Vše ok")
-    lcd.clear()
-    lcd.putstr("Kabel OK -:)")
-    time.sleep(10)
-    lcd.clear()
-    lcd.backlight_off()
-#full crossover    
-elif var_3 > var_6 > var_1 > var_7 > var_8 > var_2 > var_4 > var_5:
-    print("full crossover")
-    lcd.clear()
-    lcd.putstr("Je to               crossover kabel.")
-    time.sleep(10)
-    lcd.clear()
-    lcd.backlight_off()
-          
-#half crossover    
-elif var_3 > var_6 > var_1 > var_4 > var_5 > var_2 > var_7 > var_8:
-    print("half crossover")
-    lcd.clear()
-    lcd.putstr("Je to               crossover kabel.")
-    time.sleep(10)
-    lcd.clear()
-    lcd.backlight_off()
-    
-#oof
-else:
-    lcd.clear()
-    print("undfnd")
-    lcd.putstr("Kabel je vadny      :-(")
-    time.sleep(10)
-    lcd.clear()
-    lcd.backlight_off()
