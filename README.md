@@ -1,5 +1,6 @@
 # Ethernet_Tester_Pi-Pico
 Ethernet tester with raspberry pi pico.
+tester.py & tester_analog.py are NOT WORKING.
 
 IMPORTANT UPDATE!! DUE TO PURE LAZINESS OF MY COLLEAGUE THERE WILL BE 2 VERSIONS. I now have to work on digital version, so the analog one will be less updated. HATE HIM. YOU know who you are. Lazy bastard.
  
