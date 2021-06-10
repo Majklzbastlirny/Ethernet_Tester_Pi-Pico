@@ -34,14 +34,14 @@ out5 = Pin(6, Pin.OUT)
 out6 = Pin(7, Pin.OUT)
 out7 = Pin(8, Pin.OUT)
 out8 = Pin(9, Pin.OUT)
-in1 = Pin(11, Pin.IN)
-in2 = Pin(12, Pin.IN)
-in3 = Pin(13, Pin.IN)
-in4 = Pin(14, Pin.IN)
-in5 = Pin(15, Pin.IN)
-in6 = Pin(16, Pin.IN)
-in7 = Pin(17, Pin.IN)
-in8 = Pin(18, Pin.IN)
+in1 = Pin(10, Pin.IN, Pin.PULL_DOWN)
+in2 = Pin(11, Pin.IN, Pin.PULL_DOWN)
+in3 = Pin(12, Pin.IN, Pin.PULL_DOWN)
+in4 = Pin(13, Pin.IN, Pin.PULL_DOWN)
+in5 = Pin(14, Pin.IN, Pin.PULL_DOWN)
+in6 = Pin(15, Pin.IN, Pin.PULL_DOWN)
+in7 = Pin(16, Pin.IN, Pin.PULL_DOWN)
+in8 = Pin(17, Pin.IN, Pin.PULL_DOWN)
 
 
 
@@ -49,7 +49,7 @@ in8 = Pin(18, Pin.IN)
 
 #Zde se naprogramují často používané kousky kódu pro snadnější používání.
 #Je to napsáno VELICE neefektivně. 
-
+#Vysvětlení: dá se něco HIGH a měří se, kterej pin půjde HIGH s ním. takže třeba když se dá out1 high a pin in1 půjde high s ním, tak je cesta přímá. jinak není.
 
 
 def get_1():
@@ -75,6 +75,7 @@ def get_1():
         in_1 = 0
     out1.low()
     print(in_1)
+    lcd.putstr(str(in_1))
 
 def get_2():
     global in_2
@@ -99,6 +100,7 @@ def get_2():
         in_2 = 0
     out2.low()
     print(in_2)
+    lcd.putstr(str(in_2))
     
 def get_3():
     global in_3
@@ -123,6 +125,7 @@ def get_3():
         in_3 = 0
     out3.low()
     print(in_3)
+    lcd.putstr(str(in_3))
 
 def get_4():
     global in_4
@@ -147,6 +150,7 @@ def get_4():
         in_4 = 0
     out4.low()
     print(in_4)
+    lcd.putstr(str(in_4))
     
 def get_5():
     global in_5
@@ -171,6 +175,7 @@ def get_5():
         in_5 = 0
     out5.low()
     print(in_5)
+    lcd.putstr(str(in_5))
 
 def get_6():
     global in_6
@@ -193,8 +198,9 @@ def get_6():
         in_6 = 8
     else:
         in_6 = 0
-    out2.low()
+    out6.low()
     print(in_6)
+    lcd.putstr(str(in_6))
     
 def get_7():
     global in_7
@@ -219,6 +225,7 @@ def get_7():
         in_7 = 0
     out7.low()
     print(in_7)
+    lcd.putstr(str(in_7))
 
 def get_8():
     global in_8
@@ -243,6 +250,7 @@ def get_8():
         in_8 = 0
     out8.low()
     print(in_8)
+    lcd.putstr(str(in_8))
 
 
 #zde už je hlavní část kódu.
@@ -253,55 +261,55 @@ time.sleep(2)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 1")
+lcd.putstr("Merim  --------     1 - ")
 get_1()
 time.sleep(0.75)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 2")
+lcd.putstr("Merim  -------      2 - ")
 get_2()
 time.sleep(0.75)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 3")
+lcd.putstr("Merim  ------       3 - ")
 get_3()
 time.sleep(0.75)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 4")
+lcd.putstr("Merim  -----        4 - ")
 get_4()
 time.sleep(0.75)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 5")
+lcd.putstr("Merim  ----         5 - ")
 get_5()
 time.sleep(0.75)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 6")
+lcd.putstr("Merim  ---          6 - ")
 get_6()
 time.sleep(0.75)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 7")
+lcd.putstr("Merim  --           7 - ")
 get_7()
 time.sleep(0.75)
 
 lcd.clear()
 
-lcd.putstr("Merim drat 8")
+lcd.putstr("Merim  -            8 - ")
 get_8()
 time.sleep(0.75)
 
 lcd.clear()
 
-lcd.putstr("Zmereno")
+lcd.putstr("Analysis")
 led.toggle()      
 utime.sleep(1)
 led.toggle()
@@ -316,7 +324,8 @@ lcd.clear()
 #Zde už se bude porovnávat
 
 #normal
-if in_1 < in_2 < in_3 < in_4 < in_5 < in_5 < in_6 < in_7 < in_8:
+if in_1 < in_2 < in_3 < in_4 < in_5 < in_6 < in_7 < in_8:
+#if in_1 > in_2 > in_3 > in_4 > in_5 > in_5 > 6 > in_7 > in_8:
     print("Vše ok")
     lcd.clear()
     lcd.putstr("Kabel OK -:)")
@@ -328,6 +337,7 @@ if in_1 < in_2 < in_3 < in_4 < in_5 < in_5 < in_6 < in_7 < in_8:
 
 #full crossover    
 elif in_3 < in_6 < in_1 < in_7 < in_8 < in_2 < in_4 < in_5:
+#elif in_3 < in_1 < in_7 < in_8 < in_2 < in_4 < in_5:
     print("full crossover")
     lcd.clear()
     lcd.putstr("Je to               crossover kabel.")
@@ -337,6 +347,7 @@ elif in_3 < in_6 < in_1 < in_7 < in_8 < in_2 < in_4 < in_5:
           
 #half crossover    
 elif in_3 < in_6 < in_1 < in_4 < in_5 < in_2 < in_7 < in_8:
+#elif in_3 < in_1 < in_4 < in_5 < in_2 < in_7 < in_8:
     print("half crossover")
     lcd.clear()
     lcd.putstr("Je to               crossover kabel.")
@@ -346,9 +357,10 @@ elif in_3 < in_6 < in_1 < in_4 < in_5 < in_2 < in_7 < in_8:
     
 #shorted
 elif in_1 == in_2 == in_3 == in_4 == in_5 == in_5 == in_6 == in_7 == in_8:
+#elif in_1 == in_2 == in_3 == in_4 == in_5 == in_5 == in_7 == in_8:
     print("Šlus")
     lcd.clear()
-    lcd.putstr("V kabelu je slus    nebo nezapojeno")
+    lcd.putstr("Kabel nepripojen")
     time.sleep(10)
     lcd.clear()
     lcd.backlight_off()    
