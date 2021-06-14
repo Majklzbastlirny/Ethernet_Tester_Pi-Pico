@@ -1,5 +1,4 @@
 #SW - Michal Basler
-#HW - Patrik V. Bischof
 
 #Importuje generic i custom knihovny
 import machine
