@@ -256,7 +256,7 @@ def get_8():
 #zde už je hlavní část kódu.
 #zde jde hlavně o měření, uložení a zobrazení hodnot
 lcd.backlight_on()
-lcd.putstr("Ethernet tester     ")
+lcd.putstr("Ethernet tester      MB PVB JK QK")
 time.sleep(2)
 
 lcd.clear()
